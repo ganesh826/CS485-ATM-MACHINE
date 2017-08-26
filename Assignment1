@@ -1,0 +1,51 @@
+#include <iostream.h>
+#include <stdlib.h>
+
+//function prototypes
+void printIntroMenu();
+void printMainMenu();
+void start();
+void login();
+void createAccount();
+
+//Global variable to store the user's menu selection
+char menuInput;
+
+//Main function
+int main(){
+
+    //Welcome message goes here
+    //call the function start
+    start();
+    return 0;
+}
+
+void printIntroMenu(){
+
+  //code goes here
+
+}
+
+void printMainMenu(){
+
+  //code goes here
+
+}
+
+void start(){
+
+  //code goes here
+
+}
+
+void createAccount(){
+
+  //code goes here
+
+}
+
+void login(){
+
+  //code goes here
+
+}
