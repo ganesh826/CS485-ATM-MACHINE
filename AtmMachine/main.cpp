@@ -7,9 +7,9 @@
 
 /*
  * Still need to do: 
- * 1.) Make sure that everything works so far
- * 2.) Set up the transaction menu
- * 3.) have the deposit, withdraw functions working 
+ * 1.) Fix the issue with balance
+ * 2.) Run the program through the case given to us
+ * 3.) Beautify the program
  */
 
 #include <cstdlib>
@@ -25,9 +25,13 @@ void printMainMenu();
 void start();
 void login();
 void createAccount();
+void printTransactionOperations();
+void printTransactionOperations(double balance);
+double deposit(double balance);
+double withdraw(double balance);
 
 //Global variable to store the user's menu selection
-char menuInput;
+string menuInput;
 
 //Main function
 int main(){
@@ -47,6 +51,8 @@ void printIntroMenu(){
     cout << " l -> Login\n c -> Create New Account\n q -> Quit\n";
     cin >> selection;
     
+    //If else statement to cycle through the correct selection, and continue the program
+    
     if(selection == "l"){
         
         login();
@@ -58,7 +64,13 @@ void printIntroMenu(){
     } else if(selection == "q"){
         
         exit(0);
-    }    
+    
+    } else {
+        //If the user types any other letters other than the selection, this will cycle the program again
+        cout << "Invalid Input, please enter a valid selection";
+        printIntroMenu();
+        
+    }   
     
 }
 
@@ -86,13 +98,12 @@ void createAccount(){
     cin >> username;
     
     //password entry 
-    cout << "Please enter a password:";
+    cout << "Please enter a password:\n";
     cin >> pass;
-    
-    cout >> "Thank You, User id and Password have been created";
     
     //After the program has created the new user id and password, the program will go back to start
     start();
+   
     
 }
 
@@ -115,8 +126,100 @@ void login(){
         cout << "Access Granted!\n";
         printMainMenu();
         
+        }
+}
+
+     void printTransactionOperations(){
+        
+        //Method to cycle through the options 
+        
+        double balance;
+        
+        cout << " d -> Deposit Money\n w -> Withdraw Money\n r -> Request Balance\n q -> Quit"; 
+        cin >> menuInput;
+        
+        if(menuInput == "d"){
+            
+            balance = deposit(balance); 
+            printTransactionOperations(balance);
+            
+        } else if(menuInput == "w"){ 
+            
+            balance = withdraw(balance);
+            printTransactionOperations(balance);
+            
+        } else if(menuInput == "r"){ //balance is requested and printed out 
+            
+            cout << "Balance: " << balance;
+            printTransactionOperations();
+            
+        } else { //If the user does not pick the correct selection then the program will get this warning and cycle through again
+            
+            cout << "Invalid Input, please enter a valid selection";
+            printTransactionOperations();
+        
+        }
+ 
     }
     
-}
+    void printTransactionOperations(double balance){
+        
+        //Method to cycle through the options 
+        
+        double balance;
+        
+        cout << " d -> Deposit Money\n w -> Withdraw Money\n r -> Request Balance\n q -> Quit"; 
+        cin >> menuInput;
+        
+        if(menuInput == "d"){
+            
+            balance = deposit(balance); 
+            printTransactionOperations(balance);
+            
+        } else if(menuInput == "w"){ 
+            
+            balance = withdraw(balance);
+            printTransactionOperations(balance);
+            
+        } else if(menuInput == "r"){ //balance is requested and printed out 
+            
+            cout << "Balance: " << balance;
+            printTransactionOperations();
+            
+        } else { //If the user does not pick the correct selection then the program will get this warning and cycle through again
+            
+            cout << "Invalid Input, please enter a valid selection";
+            printTransactionOperations();
+        
+        }
+ 
+    }
+    
+    double deposit(double balance){
+        
+        double userInput;
+        
+        cout << "Amount of deposit: $ ";//Amount to be 
+        cin >> userInput;
+        
+        balance += userInput;
+        return balance;
+        
+    }
+    
+    double withdraw(double balance){
+        
+        double userInput;
+        
+        cout << "Amount of withdrawal: $ ";
+        cin >> userInput;
+        
+        balance -= userInput;
+        return balance;
+        
+    }
+
+
+
 
 
